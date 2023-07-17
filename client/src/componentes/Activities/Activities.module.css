@@ -1,0 +1,44 @@
+.Activities{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 680px;
+}
+.actCnt{
+    height: 600px;
+    padding: 1rem;
+    width: 50%;
+    letter-spacing: 0.1rem;
+    border: 1px solid rgba(47, 46, 48, 0.7);
+    background-color: rgba(47, 46, 48, 0.7);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;    flex-direction: column;
+    border-radius: 10px;
+  
+  
+}
+
+.ulAct{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    
+} 
+
+ .list{
+    columns: #fff;
+    font-size: 1.5rem;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnDeleted{
+    border: none;
+      background-color: transparent;
+      color: red;
+      font-size: 15px;
+      font-weight: 100;
+      cursor: pointer;
+  
+  }

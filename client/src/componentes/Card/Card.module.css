@@ -1,0 +1,71 @@
+.containerCard{
+    height: 205px;
+    width: 200px;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    text-align: left;
+    background-color: rgba(47, 46, 48, 0.7);
+    border-radius: 15px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;   
+}
+
+.style.card {
+    height: 200px;
+    width: 225px;
+    padding: 0.5rem;
+    margin: 0.2rem;
+    text-align: center;
+    border: 1px solid #F9F2Ea;
+    background-color: rgba(128, 128, 128, 0.5);
+   
+}
+
+.topCard{
+    display: flex;
+    justify-content: left;
+    padding: 0.3rem;
+}
+
+.h3Card{
+    padding-top: 1rem;
+    font-weight: 300;
+    margin-left: 0.5rem;
+    letter-spacing: 0;
+    font-size: 1rem;
+}
+img{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+h4{
+    font-weight: 400;
+    margin: 0.2rem 0;
+
+}
+.text{
+   margin-top: 1rem;
+   letter-spacing: 0.2;
+
+}
+.btnSeeMore{
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 1.8rem;
+    border: 1px solid #F9F2Ea;
+    background-color: rgba(128, 128, 128, 0.7);
+    border-radius: 10px;
+    color: #F9F2Ea;
+    cursor: pointer;
+    padding-bottom: 0.3rem;
+}
+
+.spanCard{
+    float: right;
+}
+
+.h4Card{
+    margin: 0.5rem 0;
+
+}

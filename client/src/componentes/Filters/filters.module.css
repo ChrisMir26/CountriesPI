@@ -1,0 +1,33 @@
+.filterContainer{
+    width: 100%;
+    height: 100px;
+    border: 1px solid white;
+    text-align: center;
+    margin: 0.5rem 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerForms{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.containerOrderSelect, .containerFilterSelect{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 0.5rem;
+
+}
+
+
+.select{
+    width: 40%;
+    padding: 0.3rem;
+    border: 1px solid #F9F2Ea;
+    border-radius: 10px;
+    cursor: pointer;
+    padding-bottom: 0.3rem;
+}

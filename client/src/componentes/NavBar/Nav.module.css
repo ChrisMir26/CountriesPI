@@ -1,0 +1,13 @@
+nav{
+    border-bottom: 0.5px solid grey;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.activityLink, .countryLink{
+    text-decoration: none;
+    font-size: 20px;
+    color:#F9F2Ea;
+}

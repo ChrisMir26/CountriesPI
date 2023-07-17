@@ -1,0 +1,68 @@
+.formDiv{
+    width: 100%;
+    height: 640px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formCnt{
+    width: 50%;
+    height: 615px;
+    padding: 1rem;
+    letter-spacing: 0.1rem;
+    border: 1px solid rgba(47, 46, 48, 0.7);
+    background-color: rgba(47, 46, 48, 0.7);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;    flex-direction: column;
+    border-radius: 10px
+}
+
+.formInput{
+    padding: 0.2rem;
+    border-radius: 5px;
+}
+.divh5{
+    margin: 1rem 0rem;
+    font-size: 1.2rem;
+
+;
+}
+
+.btnForm{
+    width: 200px;
+    padding: 0.5rem;
+    margin-top: 1.8rem;
+    border: 1px solid #F9F2Ea;
+    background-color: rgba(128, 128, 128, 0.7);
+    border-radius: 10px;
+    color: #F9F2Ea;
+    cursor: pointer;
+    margin: 1rem;
+}
+
+.formLi{
+    padding: 0.5rem;
+    border: 1px solid #F9F2Ea;
+    margin: 0.2rem;
+}
+
+.modalBtn{
+    border: none;
+    background-color: transparent;
+    color: red;
+    cursor: pointer;
+}
+
+.error{
+    border-radius: 1rem;
+    padding: 0.3rem;
+    font-size: medium;
+    text-align: center;
+    font-weight: 300;
+    animation: errores 2s ease infinite;
+    color: red;
+    }
+
+    .divh5{
+        font-weight: 200;
+    }
