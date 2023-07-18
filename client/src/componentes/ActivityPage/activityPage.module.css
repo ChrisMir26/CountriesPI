@@ -7,9 +7,10 @@
 }
 
 .formCnt{
-    width: 50%;
-    height: 615px;
+    width: 60%;
+    height: 625px;
     padding: 1rem;
+    margin-top: 1rem;
     letter-spacing: 0.1rem;
     border: 1px solid rgba(47, 46, 48, 0.7);
     background-color: rgba(47, 46, 48, 0.7);
@@ -29,7 +30,7 @@
 }
 
 .btnForm{
-    width: 200px;
+    width: 150px;
     padding: 0.5rem;
     margin-top: 1.8rem;
     border: 1px solid #F9F2Ea;
@@ -44,6 +45,7 @@
     padding: 0.5rem;
     border: 1px solid #F9F2Ea;
     margin: 0.2rem;
+    font-size: 1rem;
 }
 
 .modalBtn{

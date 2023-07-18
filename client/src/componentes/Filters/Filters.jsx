@@ -39,6 +39,7 @@ const Filters = () => {
       dispatch(filterByContinent(""));
       dispatch(getCountries());
       dispatch(setCurrentPage(1))
+      
 
     } else if (e.target.name === "alphabet" && e.target.value !== "Alphabet") {
       dispatch(sortAlphabet(e.target.value));

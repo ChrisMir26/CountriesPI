@@ -1,8 +1,12 @@
 .paginateCtn{
-    height: 30px;
+    position: absolute;
+    margin-bottom: 1rem;
+    bottom: 30px;
+    height: 25px;
     max-height: 40px;
     width: 100%;
     border-top: 1px solid white;
+
 ;
 }
 
@@ -10,7 +14,77 @@
     position: absolute;
    bottom: 0;
    right: 0;
-   margin: 3rem;
+   margin-right: 3rem;
+   margin-top: 2rem;
+   width: 40px;
+   height: 40px;
+   border-radius: 5px;
+   background-color: transparent;
+   color: white;
+   border: none;
+   padding: 1rem;
+   cursor: pointer;
+   font-size: 2rem
+   ;
+  }
+
+  .btnBack{
+   position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-right: 3rem;
+  margin-top: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 2rem
+  ;
+}
+
+ul{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;;
+    width: 100%;
+}
+
+li{
+    list-style: none;
+    padding: 0.6rem;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+li:hover{
+    background-color: rgba(47, 46, 48, 0.7);
+}
+
+
+
+
+/* .paginateCtn{
+    position: absolute;
+    bottom: 35px;
+    height: 35px;
+    max-height: 40px;
+    width: 100%;
+    border-top: 1px solid white;
+
+;
+}
+
+.btnNext{
+    position: absolute;
+   bottom: 0;
+   right: 0;
+   margin: 0;
    width: 40px;
    height: 40px;
    border-radius: 5px;
@@ -61,3 +135,4 @@ li:hover{
 }
 
 
+ */
