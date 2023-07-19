@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
         primaryKey: true, // Establecer como clave primaria
       },
       flags: {
-        type: DataTypes.STRING, // Campo de tipo String para almacenar la ruta de la bandera del país
+        type: DataTypes.TEXT, // Campo de tipo Text para almacenar la ruta de la bandera del país
         allowNull: false, // No se permite que la ruta de la bandera sea nula
       },
       continents: {

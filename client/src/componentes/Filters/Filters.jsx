@@ -17,6 +17,7 @@ const Filters = () => {
 
   useEffect(() => {
     // Se ejecuta una vez al montar el componente para obtener las actividades
+    
     dispatch(getActivities());
   }, [dispatch]);
 

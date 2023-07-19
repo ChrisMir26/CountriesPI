@@ -19,6 +19,8 @@ const initialState = {
   filteredCountries: [],
   activities: [],
   currentPage: 1,
+  continentFilter: "",
+  lastFilter: "none",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -70,6 +72,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredCountries: filterContinent,
+        lastFilter: "continent", // Aquí actualizamos lastFilter
       };
 
     case FILTER_ACTIVITIES:
@@ -79,62 +82,89 @@ const rootReducer = (state = initialState, action) => {
         (activity) => activity.name === activityName
       );
 
+      // Si no encontramos la actividad, devolvemos un estado vacío (o lo que quieras devolver en este caso)
       if (!activity) return { ...state, filteredCountries: state.countries };
 
-      return { ...state, filteredCountries: activity.Countries };
+      // Si encontramos la actividad, devolvemos los países asociados a esa actividad
+      return {
+        ...state,
+        filteredCountries: activity.Countries,
+        lastFilter: "activity",
+      };
 
     case CLEAR_COUNTRY_DETAILS:
       return initialState; // Restablece el estado a su valor inicial o a un estado vacío según tus necesidades
 
     case SORT_ALPHABET:
-      const orderCountries =
-        action.payload === "A-Z"
-          ? state.countries.sort(function (a, b) {
-              if (a.name > b.name) {
-                return 1;
-              }
-              if (b.name > a.name) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.countries.sort(function (a, b) {
-              if (a.name > b.name) {
-                return -1;
-              }
-              if (b.name > a.name) {
-                return 1;
-              }
-              return 0;
-            });
+      let sortArray =
+        state.lastFilter === "continent"
+          ? state.countries
+          : state.filteredCountries;
+      let orderAlphabet;
+
+      if (action.payload === "A-Z") {
+        orderAlphabet = sortArray.sort(function (a, b) {
+          if (a.name > b.name) {
+            return 1;
+          }
+          if (b.name > a.name) {
+            return -1;
+          }
+          return 0;
+        });
+      } else if (action.payload === "Z-A") {
+        orderAlphabet = sortArray.sort(function (a, b) {
+          if (a.name > b.name) {
+            return -1;
+          }
+          if (b.name > a.name) {
+            return 1;
+          }
+          return 0;
+        });
+      } else {
+        orderAlphabet = sortArray;
+      }
+
       return {
         ...state,
-        filteredCountries: orderCountries,
+        filteredCountries: orderAlphabet,
       };
+
     case SORT_POPULATION:
-      const orderPopulation =
-        action.payload === "descendant"
-          ? state.countries.sort(function (a, b) {
-              if (a.population > b.population) {
-                return 1;
-              }
-              if (b.population > a.population) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.countries.sort(function (a, b) {
-              if (a.population > b.population) {
-                return -1;
-              }
-              if (b.population > a.population) {
-                return 1;
-              }
-              return 0;
-            });
+      let sortArr =
+        state.lastFilter === "continent"
+          ? state.countries
+          : state.filteredCountries;
+      let orderPopulation;
+
+      if (action.payload === "descendant") {
+        orderPopulation = sortArr.sort(function (a, b) {
+          if (a.population > b.population) {
+            return 1;
+          }
+          if (b.population > a.population) {
+            return -1;
+          }
+          return 0;
+        });
+      } else if (action.payload === "ascendant") {
+        orderPopulation = sortArr.sort(function (a, b) {
+          if (a.population > b.population) {
+            return -1;
+          }
+          if (b.population> a.population) {
+            return 1;
+          }
+          return 0;
+        });
+      } else {
+        orderPopulation = sortArr;
+      }
+
       return {
         ...state,
-        filteredCountries: orderPopulation,
+        filteredCountries: sortArr,
       };
     default:
       return {
