@@ -9,14 +9,7 @@ export default function ActivityPage() {
   const dispatch = useDispatch();
   const allCountries = useSelector((state) => state.countries);
   const activities = useSelector((state) => state.activities);
-  const [error, setError] = useState({
-    name: "",
-    difficulty: "",
-    duration: "",
-    seasons: "",
-    countries: "",
-    activities: ""
-  });
+  const [error, setError] = useState({});
   const [mostrarError, setMostrarError] = useState(false);
   const [input, setInput] = useState({
     name: "",
@@ -49,97 +42,65 @@ export default function ActivityPage() {
   const handleInputChange = (e) => {
     e.preventDefault();
     const regex = /^[A-Za-záéíóúÁÉÍÓÚñÑ]{0,15}$/;
-    const name = e.target.name
-    const value = e.target.value
-
-    switch (name) {
-      case "name":
-        if (!regex.test(value)) {
-          setError({ name: "The name cannot contain numbers or special characters." });
-          setMostrarError(true);
-        } else {
-          setInput(({ ...input, [name]: value }));
-          setMostrarError(false);
-        }
-        break;
-      case "countries":
-        if (input.countries.length === 3)
-        setError({ countries: "you cant add anymore countries" })
+    if (e.target.name === "name") {
+      if (!regex.test(e.target.value)) {
+        setError("The name cannot contain numbers or special characters.");
         setMostrarError(true);
-
-
-        if(input.countries.length <= 2){
-          if (input.countries.includes(value)) {
-            setError({ countries: `Contry already added` })
-            setMostrarError(true);
-          }else{
-            setInput({
-              ...input,
-              countries: [...input.countries, value]
-            })
-            setMostrarError(false);    
-          }
-        }else{
-          console.log(`sorry something went wrong`)
-
-        }
-
-
-
-        break;
-      case "duration":
-        if (value >= 0 && value <= 12) {
-          setInput({...input, [name]: value })
-          setMostrarError(false)
-        } else {
-          setError({ duration: "Enter a duration between 1 and 12 hours." });
-          setMostrarError(true)
-
-        }
-        break;
-      default:
-        setInput({...input,
-          [name]: value,
+      } else {
+        setInput({ ...input, [e.target.name]: e.target.value });
+        setMostrarError(false);
+      }
+    } else if (e.target.name === "countries") {
+      if (input.countries.length <= 2) {
+        setInput({
+          ...input,
+          countries: input.countries.includes(e.target.value)
+            ? input.countries
+            : [...input.countries, e.target.value],
         });
-        break;
+      }
+    } else if (e.target.name === "duration") {
+      if (e.target.value >= 0 && e.target.value <= 12) {
+        setInput({ ...input, [e.target.name]: e.target.value });
+      } else {
+        setError("Enter a duration between 1 and 12 hours.");
+      }
+    } else {
+      setInput({
+        ...input,
+        [e.target.name]: e.target.value,
+      });
     }
   };
-
 
   function handleSubmit(e) {
     e.preventDefault();
     const regex = /^[A-Za-záéíóúÁÉÍÓÚñÑ]{3,15}$/;
     if (!regex.test(input.name)) {
-      setError({ name: "The name must be between 3 and 15 characters long" });
+      setError("The name must be between 3 and 15 characters long  ");
       setMostrarError(true);
-
-    }
-    else if (input.difficulty < 1 || input.difficulty > 5) {
-      setError({ difficulty: "Enter a difficulty between 1 and 5." });
+      return;
+    } else if (input.difficulty < 1 || input.difficulty > 5) {
+      setError("Enter a difficulty between 1 and 5.");
       setMostrarError(true);
-
-    }
-    else if (input.duration < 1 || input.duration > 12) {
-      setError({ duration: "Enter a duration between 1 and 12 hours." });
+      return;
+    } else if (input.duration < 1 || input.duration > 12) {
+      setError("Enter a duration between 1 and 12 hours.");
       setMostrarError(true);
-
-    }
-    else if (input.seasons.trim() === "") {
-      setError({ seasons: "Please select a season of the year." });
+      return;
+    } else if (input.seasons.trim() === "") {
+      setError("Please select a season of the year.");
       setMostrarError(true);
-
-    }
-    else if (input.countries.length === 0) {
-      setError({ countries: "Please select up to three countries" });
+      return;
+    } else if (input.countries.length === 0) {
+      setError("Please select between one and three countries.");
       setMostrarError(true);
-
-    }
-    else if (activities.length === 11) {
-      setError({ activities: "Sorry youve reached max activities,delete one to keep going" });
+      return;
+    } else if (activities.length >= 11) {
+      setError("Sorry youve reached to max activities");
       setMostrarError(true);
-
-    }
-    else {
+      return;
+    } else {
       dispatch(
         createActivity({
           ...input,
@@ -160,38 +121,26 @@ export default function ActivityPage() {
     }
   }
 
-
+  
   function handleDelete(countryName) {
 
-    if (input.countries.length > 1) {
+    if(input.countries.length > 1){
       setInput({
         ...input,
-        countries: input.countries.filter((c) => c !== countryName)
+        countries: input.countries.filter((c)=> c !== countryName)
       })
-      setMostrarError(false)
-
-
-    } else {
-      setError({ countries: "cannot delete it you must have at least one country" })
-      setMostrarError(true)
+    }else{
+      setError(`sorry you must have at least one country`)
+      mostrarError(true)
     }
-
-  }
+   
+    }
 
   const comeBackHome = () => {
     navigate("/home");
   };
 
-  const clearForm = (e) => {
-    setInput({
-      name: "",
-      difficulty: "",
-      duration: 0,
-      seasons: e.target.value,
-      countries: [],
-    });
-  }
-
+  const PaintError = () => <p className={style.error}>{error}</p>;
 
   return (
     <div className={style.formDiv}>
@@ -200,6 +149,7 @@ export default function ActivityPage() {
         <form id="formulario" onSubmit={(e) => handleSubmit(e)}>
           <div className={style.divForm}>
             <h5 className={style.divh5}>Name of the activity.</h5>
+
             <label className={style.formLabel}>
               <strong>Name:</strong>{" "}
             </label>
@@ -211,8 +161,6 @@ export default function ActivityPage() {
               placeholder="Activity"
               onChange={(e) => handleInputChange(e)}
             />
-            {error && error.name && <span className={style.error}>{error.name}</span>}
-
           </div>
 
           <div>
@@ -221,26 +169,19 @@ export default function ActivityPage() {
             <label className={style.formLabel}>
               <strong>Difficulty:</strong>{" "}
             </label>
-
             <select
               className={style.formInput}
               defaultValue="Open this select menu"
               onChange={(e) => handleInputChange(e)}
               name="difficulty"
-              value={input.difficulty}
-
             >
               <option disabled>Open this select menu</option>
-              <option value="" style={{ display: 'none' }}>Open this select menu</option> // añade esta línea
-
               <option value={1}>1 - Very Easy</option>
               <option value={2}>2 - Easy</option>
               <option value={3}>3 - Normal</option>
               <option value={4}>4 - Hard</option>
               <option value={5}>5 - Very Hard</option>
             </select>
-            {error && error.difficulty && <span className={style.error}>{error.difficulty}</span>}
-
           </div>
           <div>
             <h5 className={style.divh5}>Duration in hrs of the activity.</h5>
@@ -248,7 +189,6 @@ export default function ActivityPage() {
             <label className={style.formLabel}>
               <strong>Duration:</strong>{" "}
             </label>
-
             <input
               className={style.formInput}
               type="number"
@@ -257,8 +197,6 @@ export default function ActivityPage() {
               placeholder="Range from 1 to 12"
               onChange={(e) => handleInputChange(e)}
             />
-            {error && error.duration && <span className={style.error}>{error.duration}</span>}
-
           </div>
           <div>
             <h5 className={style.divh5}>Season of the activity.</h5>
@@ -271,18 +209,13 @@ export default function ActivityPage() {
               defaultValue="Open this select menu"
               name="seasons"
               onChange={(event) => handleInputChange(event)}
-              value={input.seasons} // aquí estamos pasando el valor del estado a nuestro campo
-
             >
               <option disabled>Open this select menu</option>
-              <option value="" style={{ display: 'none' }}>Open this select menu</option> // añade esta línea
               <option value="summer">Summer</option>
               <option value="autumn">Autumn</option>
               <option value="winter">Winter</option>
               <option value="spring">Spring</option>
             </select>
-            {error && error.seasons && <span className={style.error}>{error.seasons}</span>}
-
           </div>
           <div>
             <h5 className={style.divh5}>
@@ -295,29 +228,22 @@ export default function ActivityPage() {
               className={style.formInput}
               defaultValue="Open this select menu"
               name="countries"
-              input={input.countries}
               onChange={(e) => handleInputChange(e)}
             >
               <option disabled>Open this select menu</option>
-              <option value="" style={{ display: 'none' }}>Open this select menu</option> 
               {countriesFixed?.map((c) => (
                 <option value={c.name} key={c.id}>
                   {c.name}
                 </option>
               ))}
             </select>
-            {error && error.countries && <span className={style.error}>{error.countries}</span>}
-            {error && error.activities && <span className={style.error}>{error.activities}</span>}
+            {mostrarError && <PaintError />}
 
-
-            <div className={style.btnDetail}>
+            <div className="btnDetail">
               <button className={style.btnForm} type="submit">
                 Create ✓
               </button>
 
-              <button className={style.btnForm} onClick={(e) => { clearForm(e) }}>
-                Clear Form
-              </button>
               <button
                 type="button"
                 className={style.btnForm}
@@ -325,7 +251,6 @@ export default function ActivityPage() {
               >
                 ◁ Volver
               </button>
-              </div>
 
               <ul>
                 {input.countries.length > 0 &&
@@ -342,7 +267,7 @@ export default function ActivityPage() {
                     </li>
                   ))}
               </ul>
-            
+            </div>
           </div>
         </form>
       </div>

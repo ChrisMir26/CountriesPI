@@ -8,7 +8,7 @@
 
 .formCnt{
     width: 60%;
-    height: 625px;
+    height: 610px;
     padding: 1rem;
     margin-top: 1rem;
     letter-spacing: 0.1rem;
@@ -42,7 +42,7 @@
 }
 
 .formLi{
-    padding: 0.5rem;
+    padding: 0.4rem;
     border: 1px solid #F9F2Ea;
     margin: 0.2rem;
     font-size: 1rem;
@@ -55,7 +55,13 @@
     cursor: pointer;
 }
 
-.error{
+.btnDetail{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+/* .error{
     border-radius: 1rem;
     padding: 0.3rem;
     font-size: medium;
@@ -63,7 +69,18 @@
     font-weight: 300;
     animation: errores 2s ease infinite;
     color: red;
-    }
+    } */
+
+    .error{
+        padding: 0.2rem;
+        display: inline-block;
+        font-size: medium;
+        font-weight: 300;
+        animation: errores 2s ease infinite;
+        color: red;
+        }
+
+    
 
     .divh5{
         font-weight: 200;
